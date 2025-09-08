@@ -1,0 +1,49 @@
+# Fichiers système et de l'IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Fichiers de configuration locaux
+# IMPORTANT: Assurez-vous que wp-config.php n'est JAMAIS versionné s'il contient des secrets.
+wp-config.php
+app/sql/local.sql
+
+# Cœur de WordPress
+app/public/wp-admin/
+app/public/wp-includes/
+
+# Fichiers à la racine de WordPress (sauf wp-content et le thème personnalisé)
+app/public/index.php
+app/public/license.txt
+app/public/readme.html
+app/public/wp-activate.php
+app/public/wp-blog-header.php
+app/public/wp-comments-post.php
+app/public/wp-config-sample.php
+app/public/wp-cron.php
+app/public/wp-links-opml.php
+app/public/wp-load.php
+app/public/wp-login.php
+app/public/wp-mail.php
+app/public/wp-settings.php
+app/public/wp-signup.php
+app/public/wp-trackback.php
+app/public/xmlrpc.php
+
+# Contenu généré par l'utilisateur et sauvegardes
+app/public/wp-content/uploads/
+app/public/wp-content/upgrade/
+app/public/wp-content/backups/
+app/public/wp-content/backup-db/
+
+# Thèmes et plugins par défaut ou non personnalisés
+app/public/wp-content/plugins/hello.php
+app/public/wp-content/themes/twenty*/
+
+# Dépendances de paquets
+node_modules/
+vendor/
