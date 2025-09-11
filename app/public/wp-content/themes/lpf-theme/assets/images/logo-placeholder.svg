@@ -1,0 +1,17 @@
+<svg width="1000" height="250" viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg">
+  <g id="simplified-icons">
+    <rect x="50" y="50" width="40" height="150" stroke="#376397" stroke-width="8" fill="none" />
+    <rect x="120" y="50" width="45" height="150" stroke="#376397" stroke-width="8" fill="none" />
+    <rect x="195" y="50" width="30" height="150" stroke="#376397" stroke-width="8" fill="none" />
+    <rect x="255" y="50" width="40" height="150" stroke="#376397" stroke-width="8" fill="none" />
+    <rect x="325" y="50" width="50" height="150" stroke="#376397" stroke-width="8" fill="none" />
+  </g>
+
+  <g id="simplified-text">
+    <rect x="450" y="50" width="450" height="60" fill="#5ba0d1" />
+    
+    <rect x="450" y="125" width="500" height="75" fill="#376397" />
+    
+    <rect x="450" y="215" width="400" height="15" fill="#5ba0d1" />
+  </g>
+</svg>

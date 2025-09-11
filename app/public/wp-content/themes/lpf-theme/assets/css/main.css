@@ -1,0 +1,292 @@
+:root {
+  --bleu-fonce: #376397;
+  --bleu-clair: #5ba0d1;
+  --font-titre: 'Devin', serif;
+  --font-texte: 'Manrope', sans-serif;
+}
+
+body {
+  font-family: var(--font-texte);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titre);
+  color: var(--bleu-fonce);
+}
+
+/* ==========================================================================
+Header & Navigation
+========================================================================== */
+
+/* Conteneur principal du header */
+.site-header {
+    padding: 1rem 1.5rem; /* Espace intérieur */
+    border-bottom: 1px solid #eee;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Largeur max du contenu */
+    margin: 0 auto;
+}
+
+/* Logo */
+.site-branding img {
+    max-width: 250px; /* Taille du logo sur mobile */
+    height: auto;     /* Garde le ratio */
+}
+
+/* --- Styles Mobiles (par défaut) --- */
+
+/* Bouton Hamburger */
+.menu-toggle {
+    position: relative; /* Contexte de positionnement pour les icônes */
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;  /* Taille explicite pour le conteneur */
+    height: 30px;
+    z-index: 1000;
+}
+
+.menu-toggle svg {
+    position: absolute; /* Positionnement absolu dans le bouton */
+    top: 0;
+    left: 0;
+}
+
+/* Style du bouton Hamburger */
+.menu-toggle svg rect {
+    rx: 5; /* Rayon pour arrondir les coins des rectangles */
+}
+
+/* Gestion des icônes hamburger/croix */
+.menu-toggle .hamburger-icon {
+    display: block;
+}
+
+.menu-toggle .close-icon {
+    display: none;
+}
+
+.site-navigation.menu-open .menu-toggle .hamburger-icon {
+    display: none;
+}
+
+.site-navigation.menu-open .menu-toggle .close-icon {
+    display: block;
+}
+
+/* Cache le texte "Menu" mais le garde pour les lecteurs d'écran */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Le menu de navigation principal (caché par défaut) */
+.site-navigation ul {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    top: 80px; /* Ajustez selon la hauteur de votre header */
+    right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+/* Affiche le menu quand le menu est ouvert (via JS) */
+.site-navigation.menu-open ul {
+    display: block;
+}
+
+.site-navigation ul li {
+    margin: 0;
+}
+
+.site-navigation ul a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--bleu-fonce);
+    font-family: var(--font-titre);
+}
+
+
+/* --- Styles Desktop (écrans plus larges que 768px) --- */
+
+@media (min-width: 768px) {
+    /* Logo un peu plus grand sur desktop */
+    .site-branding img {
+        max-width: 320px;
+    }
+
+    /* Cache le bouton hamburger */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Affiche le menu de navigation */
+    .site-navigation ul {
+        display: flex; /* Aligne les éléments horizontalement */
+        position: static;
+        width: auto;
+        background-color: transparent;
+        border: none;
+    }
+
+    .site-navigation ul li {
+        margin-left: 1.5rem; /* Espace entre les liens */
+    }
+
+    .site-navigation ul a {
+        padding: 0.5rem;
+        font-family: var(--font-titre); /* <-- AJOUTER CETTE LIGNE */
+        font-size: 1rem; /* Ajustez la taille si besoin */
+    }
+
+    /* Effet au survol */
+    .site-navigation ul a:hover {
+        color: var(--bleu-clair);
+        text-decoration: underline;
+    }
+}
+
+/* ==========================================================================
+Footer
+========================================================================== */
+
+.site-footer {
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.footer-widgets-container {
+    padding: 3rem 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.footer-widgets-container .container {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 colonne sur mobile */
+    gap: 2rem;
+}
+
+.widget-title {
+    font-family: var(--font-titre);
+    color: var(--bleu-fonce);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-widget-area ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-widget-area ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-widget-area a {
+    text-decoration: none;
+    color: #555;
+}
+
+.footer-widget-area a:hover {
+    color: var(--bleu-clair);
+}
+
+.site-info {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.site-info .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-menus {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-menu {
+    display: flex;
+    flex-wrap: wrap; /* Pour gérer le passage à la ligne sur petits écrans */
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: var(--bleu-fonce);
+    font-family: var(--font-titre);
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+}
+
+.copyright p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+/* --- Styles Desktop pour le Footer --- */
+@media (min-width: 768px) {
+    .footer-widgets-container .container {
+        grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur desktop */
+    }
+
+    .site-info .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-menus {
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+/* ==========================================================================
+Page Sections
+========================================================================== */
+
+.site-section {
+    min-height: 80vh; /* Hauteur minimale pour voir le défilement */
+    padding: 4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.site-section:nth-child(odd) {
+    background-color: #f9f9f9;
+}
