@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit; // Empêche l'accès direct
+}
 
 function lpf_theme_enqueue_assets() {
     // Enregistre et charge notre feuille de style principale.
@@ -66,3 +69,35 @@ function lpf_theme_widgets_init() {
     ) );
 }
 add_action( 'widgets_init', 'lpf_theme_widgets_init' );
+
+// Nettoyage de wp_head()
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+
+function lpf_theme_setup() {
+    // Support des images à la une
+    add_theme_support('post-thumbnails');
+    
+    // Support du titre automatique
+    add_theme_support('title-tag');
+    
+    // Support des formats de post
+    add_theme_support('post-formats', array('aside', 'gallery', 'quote'));
+    
+    // Support HTML5
+    add_theme_support('html5', array(
+        'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+    ));
+}
+add_action('after_setup_theme', 'lpf_theme_setup');
+
+function lpf_theme_enqueue_fonts() {
+    wp_enqueue_style(
+        'lpf-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap',
+        [],
+        null
+    );
+}
+add_action('wp_enqueue_scripts', 'lpf_theme_enqueue_fonts');

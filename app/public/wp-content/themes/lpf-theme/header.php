@@ -6,11 +6,15 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header class="site-header">
         <div class="container">
             <div class="site-branding">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-placeholder.svg" alt="Le Panier Fromager - Logo">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-placeholder.svg" 
+                    alt="Le Panier Fromager - Logo" 
+                    loading="eager"
+                    fetchpriority="high">
                 </a>
             </div>
 
@@ -31,4 +35,4 @@
         </div>
     </header>
     
-    <main class="site-content">
+    <main id="main-content" class="site-content">

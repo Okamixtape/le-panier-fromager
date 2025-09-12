@@ -1,3 +1,57 @@
+/* ==========================================================================
+   Modern CSS Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+
 :root {
   --bleu-fonce: #376397;
   --bleu-clair: #5ba0d1;
@@ -12,6 +66,33 @@ body {
 h1, h2, h3 {
   font-family: var(--font-titre);
   color: var(--bleu-fonce);
+}
+
+/* ==========================================================================
+   Accessibilité
+   ========================================================================== */
+
+/* Lien d'évitement pour les lecteurs d'écran */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    z-index: 999999;
+    padding: 8px 16px;
+    background: var(--bleu-fonce);
+    color: white;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 6px;
+    top: 7px;
+}
+
+/* Focus visible pour la navigation au clavier */
+.site-navigation a:focus,
+.menu-toggle:focus {
+    outline: 2px solid var(--bleu-clair);
+    outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -33,9 +114,27 @@ Header & Navigation
 }
 
 /* Logo */
+/* Optimisations logo - Compatibles placeholder ET logo final */
 .site-branding img {
     max-width: 250px; /* Taille du logo sur mobile */
     height: auto;     /* Garde le ratio */
+    transition: all 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    display: block; /* Évite les espaces indésirables */
+}
+
+/* Focus pour l'accessibilité */
+.site-branding a:focus {
+    outline: 2px solid var(--bleu-clair);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Micro-amélioration du hover sur le logo */
+.site-branding a:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* --- Styles Mobiles (par défaut) --- */
@@ -47,9 +146,9 @@ Header & Navigation
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    width: 30px;  /* Taille explicite pour le conteneur */
-    height: 30px;
+    padding: 7px;     /* Zone de touch plus généreuse */
+    min-width: 44px;  /* Recommandation WCAG pour touch targets */
+    min-height: 44px;
     z-index: 1000;
 }
 
@@ -119,13 +218,24 @@ Header & Navigation
 }
 
 .site-navigation ul a {
-    display: block;
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem; /* Zones de touch plus larges sur mobile */
+    min-height: 44px;
     text-decoration: none;
-    color: var(--bleu-fonce);
+    color: var(--bleu-fonce); /* Vérifier le contraste sur fond blanc */
     font-family: var(--font-titre);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
+
+/* Optimisation écrans haute densité */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .site-branding img {
+        image-rendering: auto;
+    }
+}
 
 /* --- Styles Desktop (écrans plus larges que 768px) --- */
 
@@ -160,9 +270,164 @@ Header & Navigation
     }
 
     /* Effet au survol */
+    .site-navigation ul a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--bleu-clair);
+        transition: width 0.3s ease;
+    }
+
+    .site-navigation ul a:hover::after {
+        width: 100%;
+    }
+
     .site-navigation ul a:hover {
         color: var(--bleu-clair);
         text-decoration: underline;
+    }
+}
+
+/* ==========================================================================
+Hero Section - Visual Impact
+========================================================================== */
+
+.hero-visual-section {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    overflow-x: hidden;
+}
+
+.visual-layers {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.organic-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+.lines-svg {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Placeholders pour les couches suivantes */
+.image-layer, .circles-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* À développer dans les prochaines étapes */
+}
+
+/* ==========================================================================
+Hero Section - Content Block  
+========================================================================== */
+
+.hero-content-section {
+    padding: 4rem 1.5rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+.hero-content-section .container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+}
+
+.hero-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.hero-content-section h1 {
+    font-family: var(--font-titre);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--bleu-fonce);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bleu-clair);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--font-titre);
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 200px;
+    min-height: 44px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-button:hover {
+    background: var(--bleu-fonce);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(55, 99, 151, 0.3);
+}
+
+.cta-button:focus {
+    outline: 2px solid var(--bleu-clair);
+    outline-offset: 4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .hero-visual-section {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .hero-content-section {
+        padding: 3rem 1rem;
+    }
+    
+    .hero-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .cta-button {
+        width: 280px;
+        max-width: 100%;
     }
 }
 
@@ -289,4 +554,18 @@ Page Sections
 
 .site-section:nth-child(odd) {
     background-color: #f9f9f9;
+}
+
+/* Différencier visuellement les sections importantes */
+#les-produits {
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f4f8 100%);
+}
+
+#contact {
+    background: var(--bleu-fonce);
+    color: white;
+}
+
+#contact h2 {
+    color: white;
 }
