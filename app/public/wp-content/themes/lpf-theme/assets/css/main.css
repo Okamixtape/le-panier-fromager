@@ -297,8 +297,8 @@ Hero Section - Visual Impact
 
 .hero-visual-section {
     position: relative;
-    height: 60vh;
-    min-height: 400px;
+    height: 35vh;
+    min-height: 280px;
     overflow: hidden;
     background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
     overflow-x: hidden;
@@ -340,7 +340,7 @@ Couche 2 : Images produits - Composition diagonale
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding: 3rem;
     pointer-events: none;
@@ -350,8 +350,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-block-left,
 .image-block-right {
     position: relative;
-    width: 280px;
-    height: 200px;
+    width: 320px;
+    height: 240px;
 }
 
 /* Images avec position absolute pour placement diagonal */
@@ -371,8 +371,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-creme {
     top: 0;
     left: 0;
-    width: 180px;
-    height: 120px;
+    width: 200px;
+    height: 140px;
     z-index: 1;
     animation-delay: 0.2s;
 }
@@ -380,8 +380,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-fromage {
     bottom: 0;
     right: 0;
-    width: 160px;
-    height: 110px;
+    width: 180px;
+    height: 130px;
     z-index: 2;
     animation-delay: 0.6s;
 }
@@ -390,8 +390,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-epicerie {
     top: 0;
     right: 0;
-    width: 190px;
-    height: 125px;
+    width: 210px;
+    height: 145px;
     z-index: 1;
     animation-delay: 0.4s;
 }
@@ -399,8 +399,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-miel {
     bottom: 0;
     left: 0;
-    width: 170px;
-    height: 115px;
+    width: 190px;
+    height: 135px;
     z-index: 2;
     animation-delay: 0.8s;
 }
@@ -458,14 +458,14 @@ Couche 3 : Cercles avec logos centraux
 
 .circles-container {
     position: relative;
-    width: 320px;
-    height: 180px;
+    width: 380px;
+    height: 220px;
 }
 
 .icon-circle {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -621,8 +621,8 @@ Hero Section - Content Block
 /* Mobile responsive */
 @media (max-width: 768px) {
     .hero-visual-section {
-        height: 40vh;
-        min-height: 300px;
+        height: 30vh;
+        min-height: 250px;
     }
     
     .hero-content-section {
