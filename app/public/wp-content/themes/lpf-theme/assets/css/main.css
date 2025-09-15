@@ -329,14 +329,223 @@ Hero Section - Visual Impact
     transform: translateX(-50%);
 }
 
-/* Placeholders pour les couches suivantes */
-.image-layer, .circles-layer {
+/* ==========================================================================
+Couche 2 : Images produits - Composition diagonale
+========================================================================== */
+
+.image-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* À développer dans les prochaines étapes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    pointer-events: none;
+}
+
+/* Blocs conteneurs avec position relative */
+.image-block-left,
+.image-block-right {
+    position: relative;
+    width: 280px;
+    height: 200px;
+}
+
+/* Images avec position absolute pour placement diagonal */
+.image-block-left img,
+.image-block-right img {
+    position: absolute;
+    border-radius: 25px 15px 30px 20px; /* Forme organique */
+    border: 4px solid white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInScale 0.8s ease-out forwards;
+}
+
+/* Bloc gauche - Diagonale descendante ↘️ */
+.image-creme {
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 120px;
+    z-index: 1;
+    animation-delay: 0.2s;
+}
+
+.image-fromage {
+    bottom: 0;
+    right: 0;
+    width: 160px;
+    height: 110px;
+    z-index: 2;
+    animation-delay: 0.6s;
+}
+
+/* Bloc droite - Diagonale montante ↗️ */
+.image-epicerie {
+    top: 0;
+    right: 0;
+    width: 190px;
+    height: 125px;
+    z-index: 1;
+    animation-delay: 0.4s;
+}
+
+.image-miel {
+    bottom: 0;
+    left: 0;
+    width: 170px;
+    height: 115px;
+    z-index: 2;
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .image-layer {
+        padding: 1.5rem;
+    }
+    
+    .image-block-left,
+    .image-block-right {
+        width: 200px;
+        height: 140px;
+    }
+    
+    .image-creme { width: 120px; height: 80px; }
+    .image-fromage { width: 110px; height: 75px; }
+    .image-epicerie { width: 130px; height: 85px; }
+    .image-miel { width: 115px; height: 80px; }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    .image-block-left img,
+    .image-block-right img {
+        animation: none;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==========================================================================
+Couche 3 : Cercles avec logos centraux
+========================================================================== */
+
+.circles-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.circles-container {
+    position: relative;
+    width: 320px;
+    height: 180px;
+}
+
+.icon-circle {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    transform: scale(0);
+    animation: bounceInRotate 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Cercle goutte (bleu foncé) - Position gauche, rotation -3deg */
+.icon-circle.blue-dark {
+    background: var(--bleu-fonce);
+    top: 0;
+    left: 0;
+    transform: scale(0) rotate(-3deg);
+    z-index: 3;
+    animation-delay: 1s;
+}
+
+/* Cercle panier (bleu clair) - Position droite, rotation +3deg */
+.icon-circle.blue-light {
+    background: var(--bleu-clair);
+    top: 0;
+    right: 0;
+    transform: scale(0) rotate(3deg);
+    z-index: 2;
+    animation-delay: 1.2s;
+}
+
+.icon-circle img {
+    width: 80px;
+    height: 80px;
+    filter: brightness(0) invert(1); /* Convertit en blanc */
+}
+
+@keyframes bounceInRotate {
+    0% { 
+        transform: scale(0) rotate(var(--rotation, 0deg)); 
+    }
+    50% { 
+        transform: scale(1.05) rotate(var(--rotation, 0deg)); 
+    }
+    100% { 
+        transform: scale(1) rotate(var(--rotation, 0deg)); 
+    }
+}
+
+/* Variables CSS pour les rotations */
+.icon-circle.blue-dark {
+    --rotation: -3deg;
+}
+
+.icon-circle.blue-light {
+    --rotation: 3deg;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .circles-container {
+        width: 260px;
+        height: 140px;
+    }
+    
+    .icon-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .icon-circle img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    .icon-circle {
+        animation: none;
+        transform: scale(1) rotate(var(--rotation, 0deg));
+    }
 }
 
 /* ==========================================================================
@@ -432,115 +641,220 @@ Hero Section - Content Block
 }
 
 /* ==========================================================================
-Footer
+Footer - Conforme maquettes
 ========================================================================== */
 
 .site-footer {
-    background-color: #f9f9f9;
-    color: #555;
-    font-size: 0.9rem;
+    background: var(--bleu-fonce);
+    color: white;
+    padding: 3rem 2rem 1rem;
 }
 
-.footer-widgets-container {
-    padding: 3rem 1.5rem;
-    border-bottom: 1px solid #eee;
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
 }
 
-.footer-widgets-container .container {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 colonne sur mobile */
-    gap: 2rem;
+.footer-logo img {
+    max-width: 300px;
+    filter: brightness(0) invert(1); /* Logo en blanc */
 }
 
-.widget-title {
-    font-family: var(--font-titre);
-    color: var(--bleu-fonce);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.footer-widget-area ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-widget-area ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-widget-area a {
-    text-decoration: none;
-    color: #555;
-}
-
-.footer-widget-area a:hover {
-    color: var(--bleu-clair);
-}
-
-.site-info {
-    padding: 2rem 1.5rem;
+.social-section {
     text-align: center;
 }
 
-.site-info .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.footer-menus {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.footer-menu {
-    display: flex;
-    flex-wrap: wrap; /* Pour gérer le passage à la ligne sur petits écrans */
-    justify-content: center;
-    gap: 0.5rem 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-menu a {
-    text-decoration: none;
-    color: var(--bleu-fonce);
+.social-section h3 {
     font-family: var(--font-titre);
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    color: white;
 }
 
-.footer-menu a:hover {
-    text-decoration: underline;
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
-.copyright p {
-    margin: 0;
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.copyright {
+    text-align: center;
     font-size: 0.8rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 1rem;
 }
 
-/* --- Styles Desktop pour le Footer --- */
-@media (min-width: 768px) {
-    .footer-widgets-container .container {
-        grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur desktop */
-    }
-
-    .site-info .container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .footer-menus {
-        flex-direction: row;
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
         gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 250px;
     }
 }
 
 /* ==========================================================================
 Page Sections
 ========================================================================== */
+
+/* ==========================================================================
+Section Le Magasin
+========================================================================== */
+
+.section-magasin {
+    background: var(--bleu-fonce);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.magasin-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 4rem 2rem;
+}
+
+/* Zone contenu avec icônes décoratif */
+.content-area {
+    flex: 1;
+    position: relative;
+    background-image: url('../images/image-blanche-sur-bleue.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 3rem;
+    border-radius: 20px;
+}
+
+.content-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(55, 99, 151, 0.85);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.content-area h2,
+.content-area p {
+    position: relative;
+    z-index: 2;
+    color: white;
+    margin: 0;
+}
+
+.content-area h2 {
+    font-family: var(--font-titre);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+}
+
+.content-area p {
+    font-family: var(--font-texte);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* Zone image circulaire */
+.image-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.store-image {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 8px solid var(--bleu-clair);
+    object-fit: cover;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.store-image:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .magasin-content {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 3rem 1.5rem;
+    }
+    
+    .content-area {
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .content-area h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .content-area p {
+        font-size: 1rem;
+    }
+    
+    .image-area {
+        padding: 1rem;
+    }
+    
+    .store-image {
+        width: 250px;
+        height: 250px;
+        border-width: 6px;
+    }
+}
+
+/* Responsive Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .magasin-content {
+        gap: 2rem;
+        padding: 3rem 1.5rem;
+    }
+    
+    .store-image {
+        width: 280px;
+        height: 280px;
+    }
+}
 
 .site-section {
     min-height: 80vh; /* Hauteur minimale pour voir le défilement */
@@ -552,20 +866,452 @@ Page Sections
     border-bottom: 1px solid #eee;
 }
 
-.site-section:nth-child(odd) {
-    background-color: #f9f9f9;
+/* ==========================================================================
+Section Actualité/Événements
+========================================================================== */
+
+.section-actualite {
+    background: white;
+    padding: 4rem 2rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.actualite-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+/* Zone contenu */
+.section-actualite .content-area {
+    flex: 1;
+    background: white; /* Ensure white background */
+}
+
+.section-actualite .content-area h2 {
+    font-family: var(--font-titre);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--bleu-fonce); /* Ensure dark blue text */
+    margin: 0 0 1.5rem 0;
+}
+
+.section-actualite .content-area .subtitle {
+    font-family: var(--font-texte);
+    font-size: 1.2rem;
+    color: var(--bleu-fonce); /* Ensure dark blue text */
+    line-height: 1.6;
+    margin: 0 0 2.5rem 0;
+    max-width: 400px;
+}
+
+/* Bouton CTA outline */
+.cta-outline {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--bleu-clair);
+    border-radius: 50px;
+    color: var(--bleu-clair);
+    text-decoration: none;
+    font-family: var(--font-titre);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-outline:hover {
+    background: var(--bleu-clair);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(91, 160, 209, 0.3);
+}
+
+/* Zone image avec forme organique */
+.section-actualite .image-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actualite-composite-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .actualite-container {
+        flex-direction: column;
+        gap: 3rem; /* Increased gap for better spacing */
+    }
+    
+    .section-actualite .content-area {
+        text-align: center;
+        order: -1; /* Contenu avant image sur mobile */
+    }
+    
+    .section-actualite .content-area .subtitle {
+        max-width: none;
+    }
+}
+
+/* Responsive Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .actualite-container {
+        gap: 2rem;
+    }
+    
 }
 
 /* Différencier visuellement les sections importantes */
-#les-produits {
-    background: linear-gradient(135deg, #f9f9f9 0%, #f0f4f8 100%);
+/* ==========================================================================
+Section Les Produits
+========================================================================== */
+
+.section-produits {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f9f9f9 0%, #f0f4f8 100%);
 }
 
-#contact {
-    background: var(--bleu-fonce);
+.section-produits h2 {
+    margin-bottom: 3rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.produits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: visible; /* Allow icon to overflow */
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card-image {
+  height: 200px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px 15px 0 0;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px 15px 0 0;
+}
+
+.card-title {
+  color: white;
+  font-family: var(--font-titre);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.card-icon {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: var(--bleu-clair);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.card-icon img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.card-content {
+  padding: 2rem 1rem 1rem;
+  padding-top: 35px; /* Espace pour l'icône */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .produits-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .card-content p {
+    display: none; /* Masque le texte sur mobile */
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .produits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+Section Info pratique
+========================================================================== */
+
+.section-info-pratique {
+    background: var(--bleu-clair);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.info-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 0 2rem;
+}
+
+/* Zone carte circulaire */
+.map-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-circle {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Zone contenu */
+.info-content {
+    flex: 1;
+    color: white;
+    padding: 2rem;
+}
+
+.info-content h2 {
+    font-family: var(--font-titre);
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 2rem 0;
     color: white;
 }
 
-#contact h2 {
+.horaires p {
+    font-family: var(--font-texte);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.horaires strong {
+    font-weight: 700;
+}
+
+.separator {
+    width: 80%;
+    height: 2px;
+    background: rgba(255,255,255,0.5);
+    margin: 2rem 0;
+}
+
+.adresse p {
+    font-family: var(--font-texte);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+    
+    .map-circle {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .info-content {
+        padding: 1rem;
+        text-align: center;
+        order: -1; /* Contenu avant carte sur mobile */
+    }
+    
+    .info-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .horaires p {
+        font-size: 1.1rem;
+    }
+    
+    .adresse p {
+        font-size: 1rem;
+    }
+    
+    .separator {
+        width: 60%;
+        margin: 1.5rem auto;
+    }
+}
+
+/* Responsive Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .info-container {
+        gap: 2rem;
+    }
+    
+    .map-circle {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .horaires p {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* ==========================================================================
+Section Contact Form
+========================================================================== */
+
+.section-contact {
+  position: relative;
+  background: var(--bleu-fonce);
+  padding: 4rem 2rem;
+  /* Padding supplémentaire en haut pour compenser la courbure */
+  padding-top: 6rem;
+  text-align: center;
+}
+
+.section-contact::before {
+  content: '';
+  position: absolute;
+  top: -80px; /* Déborde au-dessus de la section */
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: var(--bleu-fonce);
+  border-radius: 50% 50% 0 0; /* Demi-ellipse inversée */
+  z-index: 1;
+}
+
+.section-contact h2 {
+    position: relative;
+    z-index: 2; /* Au-dessus du pseudo-élément */
     color: white;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+}
+
+.contact-form {
+  position: relative;
+  z-index: 2; /* Au-dessus du pseudo-élément */
+  max-width: 600px;
+  margin: 2rem auto 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; /* Match parent gap */
+}
+
+.form-field {
+  background: white;
+  border: none;
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-family: var(--font-texte);
+  width: 100%;
+}
+
+.form-field::placeholder {
+  color: #999;
+}
+
+.form-field:focus, .submit-btn:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.form-textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-family: var(--font-titre);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center; /* Center button in grid */
+}
+
+.submit-btn:hover {
+    background: white;
+    color: var(--bleu-fonce);
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-form {
+    padding: 0 1rem;
+  }
 }
