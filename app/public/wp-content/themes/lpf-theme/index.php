@@ -58,7 +58,7 @@
             <div class="hero-icon">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-magasin.svg" alt="Le Panier Fromager - Magasin">
             </div>
-            <h1>Mon fromager et épicier<br>au cœur de Compreignac</h1>
+            <h1>Mon <span class="hero-text-span">fromager</span> et <span class="hero-text-span">épicier</span><br>au cœur de Compreignac</h1>
             <a href="#le-magasin" class="cta-button">Découvrir le magasin</a>
         </div>
     </div>

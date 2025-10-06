@@ -366,14 +366,15 @@ Couche 2 : Images produits - Composition diagonale
     position: relative;
     width: 240px;
     height: 240px;
+    right: 20px;
 }
 
 /* Images avec position absolute pour placement diagonal */
 .image-block-left img,
 .image-block-right img {
     position: absolute;
-    border-radius: 25px 15px 30px 20px; /* Forme organique */
-    border: 4px solid white;
+    border-radius: 40px;
+    border: 5px solid white;
     object-fit: cover;
     opacity: 0;
     transform: scale(0.8);
@@ -468,7 +469,7 @@ Couche 3 : Logos avec cercles intégrés (SVG complets)
 /* Logos avec cercles intégrés dans les SVG */
 .logos-layer {
     position: absolute;
-    top: 0;
+    top: -40px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -485,8 +486,8 @@ Couche 3 : Logos avec cercles intégrés (SVG complets)
 }
 
 .logo-circle {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     opacity: 0;
 }
 
@@ -538,13 +539,13 @@ Hero Section - Content Block
 ========================================================================== */
 
 .hero-content-section {
-    padding: 4rem 1.5rem;
+    padding-bottom: 1.5rem;
     background: #ffffff;
     text-align: center;
 }
 
 .hero-content-section .container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -552,13 +553,11 @@ Hero Section - Content Block
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .hero-icon {
     width: 80px;
-    height: 80px;
-    opacity: 0.8;
 }
 
 .hero-icon img {
@@ -575,6 +574,10 @@ Hero Section - Content Block
     margin: 0;
 }
 
+.hero-text-span {
+    color: var(--bleu-clair);
+}
+
 .cta-button {
     display: inline-flex;
     align-items: center;
@@ -582,7 +585,7 @@ Hero Section - Content Block
     background: var(--bleu-clair);
     color: white;
     padding: 1rem 2rem;
-    border-radius: 50px;
+    border-radius: 14px;
     text-decoration: none;
     font-family: var(--font-titre);
     font-weight: 600;
@@ -716,7 +719,6 @@ Section Le Magasin
 
 .section-magasin {
     background: var(--bleu-fonce);
-    min-height: 80vh;
     display: flex;
     align-items: center;
 }
@@ -726,6 +728,7 @@ Section Le Magasin
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     gap: 4rem;
     padding: 4rem 2rem;
