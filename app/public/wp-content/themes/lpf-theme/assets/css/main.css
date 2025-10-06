@@ -355,10 +355,16 @@ Couche 2 : Images produits - Composition diagonale
 }
 
 /* Blocs conteneurs avec position relative */
-.image-block-left,
+.image-block-left {
+    position: relative;
+    width: 250px;
+    height: 240px;
+}
+
+/* Blocs conteneurs avec position relative */
 .image-block-right {
     position: relative;
-    width: 320px;
+    width: 240px;
     height: 240px;
 }
 
@@ -368,7 +374,6 @@ Couche 2 : Images produits - Composition diagonale
     position: absolute;
     border-radius: 25px 15px 30px 20px; /* Forme organique */
     border: 4px solid white;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     object-fit: cover;
     opacity: 0;
     transform: scale(0.8);
@@ -379,7 +384,7 @@ Couche 2 : Images produits - Composition diagonale
 .image-creme {
     top: 0;
     left: 0;
-    width: 200px;
+    width: 220px;
     height: 140px;
     z-index: 1;
     animation-delay: 0.2s;
@@ -398,8 +403,8 @@ Couche 2 : Images produits - Composition diagonale
 .image-epicerie {
     top: 0;
     right: 0;
-    width: 210px;
-    height: 145px;
+    width: 160px;
+    height: 200px;
     z-index: 1;
     animation-delay: 0.4s;
 }
@@ -407,7 +412,7 @@ Couche 2 : Images produits - Composition diagonale
 .image-miel {
     bottom: 0;
     left: 0;
-    width: 190px;
+    width: 135px;
     height: 135px;
     z-index: 2;
     animation-delay: 0.8s;
@@ -488,7 +493,7 @@ Couche 3 : Cercles avec logos centraux
     background: var(--bleu-fonce);
     top: 0;
     left: 0;
-    transform: scale(0) rotate(-3deg);
+    transform: scale(0) rotate(-5deg);
     z-index: 3;
     animation-delay: 1s;
 }
@@ -498,7 +503,7 @@ Couche 3 : Cercles avec logos centraux
     background: var(--bleu-clair);
     top: 0;
     right: 0;
-    transform: scale(0) rotate(3deg);
+    transform: scale(0) rotate(5deg);
     z-index: 2;
     animation-delay: 1.2s;
 }
@@ -523,11 +528,11 @@ Couche 3 : Cercles avec logos centraux
 
 /* Variables CSS pour les rotations */
 .icon-circle.blue-dark {
-    --rotation: -3deg;
+    --rotation: -5deg;
 }
 
 .icon-circle.blue-light {
-    --rotation: 3deg;
+    --rotation: 5deg;
 }
 
 /* Responsive mobile */
