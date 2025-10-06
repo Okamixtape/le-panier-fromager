@@ -101,3 +101,40 @@ function lpf_theme_enqueue_fonts() {
     );
 }
 add_action('wp_enqueue_scripts', 'lpf_theme_enqueue_fonts');
+
+// Handler pour le formulaire de contact
+function lpf_handle_contact_form() {
+    if (isset($_POST['lpf_contact_submit'])) {
+        
+        // Vérification du nonce pour la sécurité
+        if (!isset($_POST['lpf_contact_nonce']) || !wp_verify_nonce($_POST['lpf_contact_nonce'], 'lpf_contact_form')) {
+            wp_die('Erreur de sécurité. Veuillez réessayer.');
+        }
+        
+        // Validation et nettoyage
+        $nom = sanitize_text_field($_POST['nom']);
+        $prenom = sanitize_text_field($_POST['prenom']);
+        $email = sanitize_email($_POST['email']);
+        $message = sanitize_textarea_field($_POST['message']);
+        
+        // Vérification email valide
+        if (!is_email($email)) {
+            wp_die('Email invalide');
+        }
+        
+        // Préparation email
+        $to = 'loup.aubour@gmail.com'; // ⚠️ À CONFIRMER
+        $subject = 'Nouveau message de contact - Le Panier Fromager';
+        $body = "Nom: $nom\nPrénom: $prenom\nEmail: $email\n\nMessage:\n$message";
+        $headers = array('Content-Type: text/plain; charset=UTF-8');
+        
+        // Envoi
+        if (wp_mail($to, $subject, $body, $headers)) {
+            wp_redirect(home_url('/?contact=success#contact'));
+        } else {
+            wp_redirect(home_url('/?contact=error#contact'));
+        }
+        exit;
+    }
+}
+add_action('template_redirect', 'lpf_handle_contact_form');

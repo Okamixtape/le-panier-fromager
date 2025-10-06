@@ -425,6 +425,14 @@ Couche 2 : Images produits - Composition diagonale
     }
 }
 
+/* Animation pour les logos avec rotation préservée */
+@keyframes fadeInScaleRotate {
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(var(--rotation));
+    }
+}
+
 /* Responsive mobile */
 @media (max-width: 768px) {
     .image-layer {
@@ -454,10 +462,11 @@ Couche 2 : Images produits - Composition diagonale
 }
 
 /* ==========================================================================
-Couche 3 : Cercles avec logos centraux
+Couche 3 : Logos avec cercles intégrés (SVG complets)
 ========================================================================== */
 
-.circles-layer {
+/* Logos avec cercles intégrés dans les SVG */
+.logos-layer {
     position: absolute;
     top: 0;
     left: 0;
@@ -467,97 +476,60 @@ Couche 3 : Cercles avec logos centraux
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    z-index: 3;
 }
 
-.circles-container {
-    position: relative;
-    width: 380px;
-    height: 220px;
-}
-
-.icon-circle {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+.logos-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-    transform: scale(0);
-    animation: bounceInRotate 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
-/* Cercle goutte (bleu foncé) - Position gauche, rotation -3deg */
-.icon-circle.blue-dark {
-    background: var(--bleu-fonce);
-    top: 0;
-    left: 0;
-    transform: scale(0) rotate(-5deg);
-    z-index: 3;
-    animation-delay: 1s;
+.logo-circle {
+    width: 180px;
+    height: 180px;
+    opacity: 0;
 }
 
-/* Cercle panier (bleu clair) - Position droite, rotation +3deg */
-.icon-circle.blue-light {
-    background: var(--bleu-clair);
-    top: 0;
-    right: 0;
-    transform: scale(0) rotate(5deg);
-    z-index: 2;
-    animation-delay: 1.2s;
+.logo-goutte {
+    --rotation: -15deg; /* Variable pour la rotation */
+    transform: scale(0.8) rotate(-15deg); /* Bancale vers la gauche */
+    z-index: 3; /* Devant le panier */
+    animation: fadeInScaleRotate 0.8s ease-out 1s forwards;
 }
 
-.icon-circle img {
-    width: 80px;
-    height: 80px;
-    filter: brightness(0) invert(1); /* Convertit en blanc */
+.logo-panier {
+    --rotation: 15deg; /* Variable pour la rotation */
+    transform: scale(0.8) rotate(15deg); /* Bancale vers la droite */
+    z-index: 2; /* Derrière la goutte */
+    animation: fadeInScaleRotate 0.8s ease-out 1.2s forwards;
+    margin-left: -28px; /* Chevauchement : rapproche le panier de la goutte */
 }
 
-@keyframes bounceInRotate {
-    0% { 
-        transform: scale(0) rotate(var(--rotation, 0deg)); 
-    }
-    50% { 
-        transform: scale(1.05) rotate(var(--rotation, 0deg)); 
-    }
-    100% { 
-        transform: scale(1) rotate(var(--rotation, 0deg)); 
-    }
-}
-
-/* Variables CSS pour les rotations */
-.icon-circle.blue-dark {
-    --rotation: -5deg;
-}
-
-.icon-circle.blue-light {
-    --rotation: 5deg;
-}
-
-/* Responsive mobile */
+/* Mobile */
 @media (max-width: 768px) {
-    .circles-container {
-        width: 260px;
-        height: 140px;
-    }
-    
-    .icon-circle {
+    .logo-circle {
         width: 140px;
         height: 140px;
     }
     
-    .icon-circle img {
-        width: 60px;
-        height: 60px;
+    .logo-panier {
+        margin-left: -30px; /* Chevauchement réduit sur mobile */
     }
 }
 
 /* Accessibilité */
 @media (prefers-reduced-motion: reduce) {
-    .icon-circle {
+    .logo-circle {
         animation: none;
-        transform: scale(1) rotate(var(--rotation, 0deg));
+        opacity: 1;
+    }
+    
+    .logo-goutte {
+        transform: scale(1) rotate(-8deg);
+    }
+    
+    .logo-panier {
+        transform: scale(1) rotate(8deg);
     }
 }
 

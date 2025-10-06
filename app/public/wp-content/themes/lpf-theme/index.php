@@ -37,20 +37,15 @@
             </div>
         </div>
         
-        <!-- Couche 3: Cercles avec logos -->
-        <div class="circles-layer">
-            <div class="circles-container">
-                <!-- Cercle goutte (bleu foncé) - Premier plan -->
-                <div class="icon-circle blue-dark">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-goutte.svg" 
-                         alt="Le Panier Fromager - Goutte">
-                </div>
-                
-                <!-- Cercle panier (bleu clair) - Arrière-plan -->
-                <div class="icon-circle blue-light">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-panier.svg" 
-                         alt="Le Panier Fromager - Panier">
-                </div>
+        <!-- Couche 3: Logos avec cercles intégrés -->
+        <div class="logos-layer">
+            <div class="logos-container">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-goutte-filled.svg" 
+                     class="logo-circle logo-goutte" 
+                     alt="Le Panier Fromager - Goutte" />
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-panier-filled.svg" 
+                     class="logo-circle logo-panier" 
+                     alt="Le Panier Fromager - Panier" />
             </div>
         </div>
     </div>
