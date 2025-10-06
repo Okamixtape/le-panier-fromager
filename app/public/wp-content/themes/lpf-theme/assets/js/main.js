@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
             this.setAttribute('aria-expanded', !isExpanded);
         });
 
-        // Gestion du défilement fluide (Smooth Scroll)
-        const anchorLinks = document.querySelectorAll('.site-navigation a[href^="#"]');
+        // Gestion du défilement fluide (Smooth Scroll) - Navigation + Boutons CTA
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
         anchorLinks.forEach(link => {
             link.addEventListener('click', function (e) {

@@ -63,7 +63,7 @@
             <div class="hero-icon">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-magasin.svg" alt="Le Panier Fromager - Magasin">
             </div>
-            <h1>Mon fromager et épicerie<br>au cœur de Compreignac</h1>
+            <h1>Mon fromager et épicier<br>au cœur de Compreignac</h1>
             <a href="#le-magasin" class="cta-button">Découvrir le magasin</a>
         </div>
     </div>
@@ -169,30 +169,43 @@
                 <div class="adresse">
                     <p>2 Place de l'Église,<br>
                     87140 Compreignac</p>
+                    <p><strong>Téléphone :</strong> <a href="tel:+33555000000" class="tel-link">05 55 XX XX XX</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="evenements" class="section-actualite">
-    <div class="actualite-container">
-        <div class="content-area">
-            <h2>Actualité</h2>
-            <p class="subtitle">Tout au long de l'année retrouvez nos événement et bons plans</p>
-            <a href="#contact" class="cta-outline">En savoir plus</a>
+    <section id="actualite" class="section-actualite">
+        <div class="actualite-container">
+            <div class="content-area">
+                <h2>Actualité</h2>
+                <p class="subtitle">Tout au long de l'année retrouvez nos événement et bons plans</p>
+                <a href="#contact" class="cta-outline">En savoir plus</a>
+            </div>
+            <div class="image-area">
+                <img class="actualite-composite-image"
+                    src="<?php echo get_template_directory_uri(); ?>/assets/images/image-evenements.png"
+                    alt="Événements et dégustations au Panier Fromager">
+            </div>
         </div>
-        <div class="image-area">
-            <img class="actualite-composite-image"
-                src="<?php echo get_template_directory_uri(); ?>/assets/images/image-evenements.png"
-                alt="Événements et dégustations au Panier Fromager">
-        </div>
-    </div>
-</section>
+    </section>
 
 <section id="contact" class="section-contact">
     <div class="container">
         <h2>En savoir plus ?</h2>
+        
+        <?php if (isset($_GET['contact']) && $_GET['contact'] === 'success'): ?>
+            <div class="contact-message success">
+                <p>✅ Votre message a bien été envoyé ! Nous vous répondrons dans les plus brefs délais.</p>
+            </div>
+        <?php elseif (isset($_GET['contact']) && $_GET['contact'] === 'error'): ?>
+            <div class="contact-message error">
+                <p>❌ Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.</p>
+            </div>
+        <?php endif; ?>
+        
         <form class="contact-form" method="post">
+            <?php wp_nonce_field('lpf_contact_form', 'lpf_contact_nonce'); ?>
             <div class="form-row">
                 <div class="form-field-wrapper">
                     <label for="nom" class="sr-only">Nom</label>
@@ -211,7 +224,7 @@
                 <label for="message" class="sr-only">Message</label>
                 <textarea id="message" name="message" class="form-field form-textarea" placeholder="Mon message" required></textarea>
             </div>
-            <button type="submit" class="submit-btn">Envoyer</button>
+            <button type="submit" name="lpf_contact_submit" class="submit-btn">Envoyer</button>
         </form>
     </div>
 </section>

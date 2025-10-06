@@ -43,6 +43,7 @@ app/public/wp-content/backup-db/
 # Thèmes et plugins par défaut ou non personnalisés
 app/public/wp-content/plugins/hello.php
 app/public/wp-content/themes/twenty*/
+app/public/wp-content/plugins/wp-mail-smtp/
 
 # Dépendances de paquets
 node_modules/

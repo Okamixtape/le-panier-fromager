@@ -51,6 +51,14 @@ select {
   font: inherit;
 }
 
+/* Police Devin Bold */
+@font-face {
+    font-family: 'Devin';
+    src: url('../fonts/devin-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
 
 :root {
   --bleu-fonce: #376397;
@@ -211,6 +219,7 @@ Header & Navigation
 /* Affiche le menu quand le menu est ouvert (via JS) */
 .site-navigation.menu-open ul {
     display: block;
+    z-index: 1000;
 }
 
 .site-navigation ul li {
@@ -300,7 +309,6 @@ Hero Section - Visual Impact
     height: 35vh;
     min-height: 280px;
     overflow: hidden;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
     overflow-x: hidden;
 }
 
@@ -682,18 +690,22 @@ Footer - Conforme maquettes
 }
 
 .social-icon {
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    transition: opacity 0.3s ease;
 }
 
 .social-icon:hover {
-    transform: scale(1.1);
+    opacity: 0.7;
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .copyright {
@@ -746,7 +758,7 @@ Section Le Magasin
 .content-area {
     flex: 1;
     position: relative;
-    background-image: url('../images/image-blanche-sur-bleue.png');
+    background-image: url('../images/image-blanche-sur-bleu.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -891,6 +903,11 @@ Section Actualité/Événements
 .section-actualite .content-area {
     flex: 1;
     background: white; /* Ensure white background */
+}
+
+/* Désactiver l'overlay bleu pour la section Actualité */
+.section-actualite .content-area::before {
+    display: none; /* Supprime le pseudo-élément bleu */
 }
 
 .section-actualite .content-area h2 {
@@ -1215,6 +1232,15 @@ Section Info pratique
     }
 }
 
+/* Lien téléphone */
+.tel-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tel-link:hover {
+    text-decoration: underline;
+}
 
 /* ==========================================================================
 Section Contact Form
@@ -1247,6 +1273,34 @@ Section Contact Form
     color: white;
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: 2rem;
+}
+
+/* Messages de confirmation/erreur */
+.contact-message {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  font-family: var(--font-texte);
+}
+
+.contact-message.success {
+  background: rgba(255, 255, 255, 0.95);
+  color: #2d5016;
+  border: 2px solid #4caf50;
+}
+
+.contact-message.error {
+  background: rgba(255, 255, 255, 0.95);
+  color: #c62828;
+  border: 2px solid #f44336;
+}
+
+.contact-message p {
+  margin: 0;
+  font-size: 1rem;
 }
 
 .contact-form {
