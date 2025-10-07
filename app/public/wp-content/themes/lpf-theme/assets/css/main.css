@@ -39,7 +39,7 @@ body {
 /* Mobile par défaut : header collé en haut */
 section[id],
 main[id] {
-  scroll-margin-top: 80px; /* Hauteur header mobile (~60px) + marge (10px) */
+  scroll-margin-top: 40px; /* Hauteur header mobile (~60px) + marge (10px) */
 }
 
 ul,
@@ -124,7 +124,7 @@ Header & Navigation
 /* Mobile par défaut : header collé en haut */
 .site-header {
     position: sticky;
-    top: 46px; /* Collé en haut sur mobile */
+    top: 0px; /* Collé en haut sur mobile */
     z-index: 1000;
     padding: 0.75rem 1rem; /* Padding compact sur mobile */
     background: white;
@@ -484,22 +484,44 @@ Couche 2 : Images produits - Composition diagonale
     }
 }
 
-/* Responsive mobile */
-@media (max-width: 768px) {
+/* Responsive mobile - Ajustement pour petits écrans */
+@media (max-width: 676px) {
     .image-layer {
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
-    .image-block-left,
+    /* Conteneurs réduits proportionnellement (~70% du desktop) */
+    .image-block-left {
+        width: 175px;
+        height: 170px;
+    }
+    
     .image-block-right {
-        width: 200px;
-        height: 140px;
+        width: 170px;
+        height: 170px;
+        right: 10px;
     }
     
-    .image-creme { width: 120px; height: 80px; }
-    .image-fromage { width: 110px; height: 75px; }
-    .image-epicerie { width: 130px; height: 85px; }
-    .image-miel { width: 115px; height: 80px; }
+    /* Images réduites proportionnellement (~70% du desktop) */
+    .image-creme { 
+        width: 155px; 
+        height: 100px; 
+    }
+    
+    .image-fromage { 
+        width: 125px; 
+        height: 90px; 
+    }
+    
+    .image-epicerie { 
+        width: 115px; 
+        height: 140px; 
+    }
+    
+    .image-miel { 
+        width: 95px; 
+        height: 95px; 
+    }
 }
 
 /* Accessibilité */
@@ -560,7 +582,7 @@ Couche 3 : Logos avec cercles intégrés (SVG complets)
 @media (max-width: 768px) {
     .logo-circle {
         width: 140px;
-        height: 140px;
+        height: 120px;
     }
     
     .logo-panier {
@@ -659,7 +681,7 @@ Hero Section - Content Block
 /* Mobile responsive */
 @media (max-width: 768px) {
     .hero-visual-section {
-        height: 30vh;
+        height: 20vh;
         min-height: 250px;
     }
     
@@ -786,14 +808,18 @@ Section Le Magasin
 
 /* Zone contenu avec icônes décoratif */
 .content-area {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 300px; /* flex-grow, flex-shrink, min-width */
     position: relative;
     background-image: url('../images/image-blanche-sur-bleu.png');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 3rem 3rem 3rem 2rem; /* Plus d'espace à gauche pour le texte */
+    padding: 3rem 3rem 3rem 2rem;
     border-radius: 20px;
+    min-width: 300px; /* Largeur minimale pour éviter compression excessive */
 }
 
 .content-area::before {
@@ -831,7 +857,7 @@ Section Le Magasin
 
 /* Zone image circulaire */
 .image-area {
-    flex: 1;
+    flex: 0 0 auto; /* Ne se compresse pas, garde sa taille naturelle */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -876,45 +902,53 @@ Section Le Magasin
 /* Responsive Mobile */
 @media (max-width: 768px) {
     .magasin-content {
-        flex-direction: column-reverse;
-        gap: 2rem;
-        padding: 3rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem; /* Réduit de 2rem à 1rem */
+        padding: 2rem 1.5rem; /* Réduit de 3rem à 2rem */
     }
     
     .content-area {
-        padding: 2rem;
-        text-align: center;
+        padding: 1.5rem; /* Réduit de 2rem à 1.5rem */
+        text-align: left;
     }
     
     .content-area h2 {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem; /* Réduit de 1rem à 0.75rem */
     }
     
     .content-area p {
         font-size: 1rem;
+        line-height: 1.5; /* Réduit l'interligne */
     }
     
     .image-area {
-        padding: 1rem;
+        padding: 0.5rem; /* Réduit de 1rem à 0.5rem */
     }
     
     .store-image-wrapper {
-        width: 320px;
-        height: 320px;
+        width: 350px; /* Augmenté de 320px à 350px */
+        height: 350px;
     }
 }
 
-/* Responsive Tablet */
+/* Responsive Tablet (769px à 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
     .magasin-content {
         gap: 2rem;
         padding: 3rem 1.5rem;
     }
     
-    .store-image {
-        width: 280px;
-        height: 280px;
+    /* Réduit le wrapper ET l'image proportionnellement */
+    .store-image-wrapper {
+        width: 320px;
+        height: 320px;
+    }
+    
+    /* Assure une largeur minimale pour le contenu */
+    .content-area {
+        flex: 1 1 400px; /* min-width de 400px */
+        padding: 2.5rem;
     }
 }
 
@@ -979,6 +1013,7 @@ Section Actualité/Événements
 /* Bouton CTA outline */
 .cta-outline {
     display: inline-block;
+    align-self: flex-start;
     padding: 1rem 2.5rem;
     border: 2px solid var(--bleu-clair);
     border-radius: 14px;
@@ -1014,16 +1049,36 @@ Section Actualité/Événements
 @media (max-width: 768px) {
     .actualite-container {
         flex-direction: column;
-        gap: 3rem; /* Increased gap for better spacing */
+        gap: 1.5rem; /* Réduit de 3rem à 1.5rem */
+    }
+
+    .section-actualite {
+        padding: 2rem 1.5rem 6rem;
+        min-height: auto; /* Supprime la hauteur minimale de 80vh sur mobile */
     }
     
     .section-actualite .content-area {
-        text-align: center;
+        text-align: center; /* ✅ Garde le centrage */
         order: -1; /* Contenu avant image sur mobile */
+    }
+    
+    .section-actualite .content-area h2 {
+        margin-bottom: 1rem; /* Réduit l'espace sous le titre */
     }
     
     .section-actualite .content-area .subtitle {
         max-width: none;
+        margin-bottom: 1.5rem; /* Réduit l'espace sous le sous-titre */
+    }
+    
+    /* Image taille fixe comme la carte info */
+    .actualite-composite-image {
+        max-width: 320px; /* Même taille que .map-circle */
+        width: 100%;
+        height: auto;
+    }
+    .cta-outline{
+        align-self: center;
     }
 }
 
@@ -1086,9 +1141,9 @@ Section Les Produits
 }
 
 .card-title {
-  color: var(--bleu-clair);
-  font-family: var(--font-titre);
-  font-size: 1.8rem;
+  color: var(--bleu-clair); /* Bleu par défaut (desktop) */
+  font-family: var(--font-texte);
+  font-size: 3rem;
   font-weight: 600;
   margin: 0;
   margin-bottom: 1rem;
@@ -1119,6 +1174,7 @@ Section Les Produits
 .card-content {
   padding: 2.5rem 1.5rem 1.5rem;
   padding-top: 50px; /* Espace pour l'icône plus grande */
+  position: relative; /* Pour que le titre absolu fonctionne */
 }
 
 .card-content p {
@@ -1136,8 +1192,54 @@ Section Les Produits
     gap: 3rem;
   }
   
-  .card-content p {
-    display: none; /* Masque le texte sur mobile */
+  /* Sur mobile : afficher le titre sur l'image */
+  .card-title-mobile {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+  }
+  
+  /* Masquer le titre desktop */
+  .card-title-desktop {
+    display: none;
+  }
+  
+  .card-content {
+    display: none; /* Masque complètement le card-content sur mobile */
+  }
+  
+  .product-card {
+    border-radius: 20px; /* Image seule avec coins arrondis */
+  }
+  
+  .card-image {
+    border-radius: 20px; /* Coins arrondis sur toute l'image */
+  }
+  
+  .card-overlay {
+    border-radius: 20px; /* Overlay avec coins arrondis */
+    background: rgba(0,0,0,0.3); /* Overlay plus foncé pour meilleure lisibilité du texte blanc */
+  }
+}
+
+/* Desktop : afficher le titre sous l'image */
+@media (min-width: 769px) {
+  /* Masquer le titre mobile (sur l'image) */
+  .card-title-mobile {
+    display: none;
+  }
+  
+  /* Afficher le titre desktop (sous l'image) */
+  .card-title-desktop {
+    display: block;
+    font-size: 2rem;
   }
 }
 
@@ -1153,7 +1255,6 @@ Section Info pratique
 
 .section-info-pratique {
     background: var(--bleu-clair);
-    min-height: 80vh;
     display: flex;
     align-items: center;
     padding: 4rem 0;
@@ -1234,30 +1335,34 @@ Section Info pratique
 
 /* Responsive Mobile */
 @media (max-width: 768px) {
+    .section-info-pratique {
+        padding: 2rem 0; /* Réduit de 4rem à 2rem */
+    }
+    
     .info-container {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem; /* Réduit de 2rem à 1.5rem */
         padding: 0 1.5rem;
     }
     
     .map-circle {
-        width: 280px;
-        height: 280px;
+        width: 320px; /* Augmenté de 280px à 320px */
+        height: 320px;
     }
     
     .info-content {
-        padding: 1rem;
-        text-align: center;
+        padding: 0; /* Supprime le padding */
+        text-align: center; /* ✅ Garde le centrage */
         order: -1; /* Contenu avant carte sur mobile */
     }
     
     .info-content h2 {
         font-size: 2rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem; /* Réduit de 1.5rem à 1rem */
     }
     
     .horaires p {
-        font-size: 1.1rem;
+        font-size: 1rem; /* Réduit de 1.1rem à 1rem */
     }
     
     .adresse p {
@@ -1418,6 +1523,11 @@ Section Contact Form
 
 /* Responsive mobile */
 @media (max-width: 768px) {
+  .section-contact {
+    padding: 0rem 2rem;
+    padding-top: 0rem;
+  }
+  
   .form-row {
     grid-template-columns: 1fr;
   }

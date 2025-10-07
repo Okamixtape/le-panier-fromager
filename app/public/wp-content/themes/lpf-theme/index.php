@@ -19,20 +19,20 @@
             <!-- Bloc gauche - Diagonale descendante ↘️ -->
             <div class="image-block-left">
                 <img class="image-creme" 
-                     src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=400&h=300&fit=crop" 
+                     src="<?php echo get_template_directory_uri(); ?>/assets/images/produit-cremerie.webp" 
                      alt="Crème fraîche artisanale">
                 <img class="image-fromage" 
-                     src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400&h=300&fit=crop" 
+                     src="<?php echo get_template_directory_uri(); ?>/assets/images/produit-fromage.webp" 
                      alt="Fromages artisanaux">
             </div>
             
             <!-- Bloc droite - Diagonale montante ↗️ -->
             <div class="image-block-right">
                 <img class="image-epicerie" 
-                     src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" 
+                     src="<?php echo get_template_directory_uri(); ?>/assets/images/produit-aubergine.webp" 
                      alt="Épicerie fine">
                 <img class="image-miel" 
-                     src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop" 
+                     src="<?php echo get_template_directory_uri(); ?>/assets/images/produit-epicerie.webp" 
                      alt="Miels artisanaux">
             </div>
         </div>
@@ -88,12 +88,13 @@
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1452195100486-9cc805987862?w=300&h=200&fit=crop');">
                         <div class="card-overlay"></div>
+                        <h3 class="card-title card-title-mobile">Fromages</h3>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-fromage.svg" alt="Icône Fromage">
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Fromages</h3>
+                        <h3 class="card-title card-title-desktop">Fromages</h3>
                         <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
@@ -102,12 +103,13 @@
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=300&h=200&fit=crop');">
                         <div class="card-overlay"></div>
+                        <h3 class="card-title card-title-mobile">Crémerie</h3>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cremerie.svg" alt="Icône Crémerie">
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Crémerie</h3>
+                        <h3 class="card-title card-title-desktop">Crémerie</h3>
                         <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
@@ -116,12 +118,13 @@
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300&h=200&fit=crop');">
                         <div class="card-overlay"></div>
+                        <h3 class="card-title card-title-mobile">Primeur</h3>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-primeur.svg" alt="Icône Primeur">
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Primeur</h3>
+                        <h3 class="card-title card-title-desktop">Primeur</h3>
                         <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
@@ -130,12 +133,13 @@
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=200&fit=crop');">
                         <div class="card-overlay"></div>
+                        <h3 class="card-title card-title-mobile">Épicerie</h3>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-epicerie.svg" alt="Icône Épicerie">
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Épicerie</h3>
+                        <h3 class="card-title card-title-desktop">Épicerie</h3>
                         <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
