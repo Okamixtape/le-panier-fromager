@@ -71,74 +71,72 @@
             <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet? Coluntur tamen simulatione dumtaxat ad tempus.</p>
         </div>
         <div class="image-area">
-            <img class="store-image" 
-                 src="<?php echo get_template_directory_uri(); ?>/assets/images/image-devanture-epicerie.png" 
-                 alt="Devanture du Panier Fromager">
+            <div class="store-image-wrapper">
+                <img class="store-image" 
+                     src="<?php echo get_template_directory_uri(); ?>/assets/images/image-devanture-epicerie.png" 
+                     alt="Devanture du Panier Fromager">
+            </div>
         </div>
     </div>
 </section>
 
     <section id="les-produits" class="section-produits">
         <div class="container">
-            <h2>Les Produits</h2>
+            <h2 class="section-produits-title">Les produits</h2>
             <div class="produits-grid">
                 <!-- Card 1: Fromages -->
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1452195100486-9cc805987862?w=300&h=200&fit=crop');">
-                        <div class="card-overlay">
-                            <h3 class="card-title">Fromages</h3>
-                        </div>
+                        <div class="card-overlay"></div>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-fromage.svg" alt="Icône Fromage">
                         </div>
                     </div>
                     <div class="card-content">
-                        <p>Une sélection rigoureuse des meilleurs fromages de nos régions.</p>
+                        <h3 class="card-title">Fromages</h3>
+                        <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
 
                 <!-- Card 2: Crémerie -->
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=300&h=200&fit=crop');">
-                        <div class="card-overlay">
-                            <h3 class="card-title">Crémerie</h3>
-                        </div>
+                        <div class="card-overlay"></div>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cremerie.svg" alt="Icône Crémerie">
                         </div>
                     </div>
                     <div class="card-content">
-                        <p>Du beurre à la crème fraîche, des produits laitiers de qualité.</p>
+                        <h3 class="card-title">Crémerie</h3>
+                        <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
 
                 <!-- Card 3: Primeur -->
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300&h=200&fit=crop');">
-                        <div class="card-overlay">
-                            <h3 class="card-title">Primeur</h3>
-                        </div>
+                        <div class="card-overlay"></div>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-primeur.svg" alt="Icône Primeur">
                         </div>
                     </div>
                     <div class="card-content">
-                        <p>Des fruits et légumes frais, locaux et de saison.</p>
+                        <h3 class="card-title">Primeur</h3>
+                        <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
 
                 <!-- Card 4: Épicerie -->
                 <div class="product-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=200&fit=crop');">
-                        <div class="card-overlay">
-                            <h3 class="card-title">Épicerie</h3>
-                        </div>
+                        <div class="card-overlay"></div>
                         <div class="card-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-epicerie.svg" alt="Icône Épicerie">
                         </div>
                     </div>
                     <div class="card-content">
-                        <p>Des produits fins pour accompagner vos dégustations.</p>
+                        <h3 class="card-title">Épicerie</h3>
+                        <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet?</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +185,7 @@
 
 <section id="contact" class="section-contact">
     <div class="container">
-        <h2>En savoir plus ?</h2>
+        <h2>EN SAVOIR PLUS ?</h2>
         
         <?php if (isset($_GET['contact']) && $_GET['contact'] === 'success'): ?>
             <div class="contact-message success">
